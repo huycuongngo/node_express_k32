@@ -15,6 +15,7 @@ const checkEmailUser = (users, email) => {
 }
 
 module.exports = {
+  saltRounds,
   hashPassword,
   checkPasswordUser,
   checkEmailUser,
