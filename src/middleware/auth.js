@@ -49,6 +49,7 @@ const checkRefreshToken = (req, res, next) => {
       handleResponseError(res, 401, 'Unauthorized. Invalid refresh token')
       return
     }
+    res.locals.decodedData = decodedData;
     next()
   })
 }
