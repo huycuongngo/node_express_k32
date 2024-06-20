@@ -28,7 +28,23 @@ const getItemById = (req, res) => {
     handleResponseError(res, 404, "Item not found")
     return
   }
+  handleResponseSuccess(res, 200, "Get item successfully", { ...checkedItem })
 }
+
+const getItemsPagination = (req, res) => {
+  const { pageIndex, limit } = req.query
+  const startIndex = (pageIndex - 1) * limit
+  const endIndex = startIndex + limit - 1
+  let result = {
+    data: items.slice(startIndex, endIndex + 1),
+    itemsPerPage: limit,
+    currentPage: pageIndex,
+    totalPages: Math.ceil(items.length / limit)
+  }
+  handleResponseSuccess(res, 200, "Get items pagination successfully", {...result})
+}
+
+
 
 
 
